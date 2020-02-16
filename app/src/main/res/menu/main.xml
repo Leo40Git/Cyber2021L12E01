@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+            android:id="@+id/menuInput"
+            android:title="Input" />
+    <item
+            android:id="@+id/menuView"
+            android:title="View" />
+    <item
+            android:id="@+id/menuSortFilter"
+            android:title="Sort &amp; Filter" />
+    <item
+            android:id="@+id/menuCredits"
+            android:title="Credits" />
+</menu>

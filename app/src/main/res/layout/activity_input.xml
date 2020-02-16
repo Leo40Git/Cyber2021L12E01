@@ -1,18 +1,202 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_margin="4dp"
+        android:orientation="vertical"
         tools:context=".InputActivity">
 
-    <TextView
-            android:layout_width="wrap_content"
+    <Spinner
+            android:id="@+id/spnTableSelect"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Hello World!"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_marginBottom="4dp"
+            android:spinnerMode="dialog" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+            android:id="@+id/layStudentInput"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+        <EditText
+                android:id="@+id/etStudentName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:ems="10"
+                android:hint="Name"
+                android:inputType="textPersonName" />
+
+        <EditText
+                android:id="@+id/etStudentAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:ems="10"
+                android:hint="Address"
+                android:inputType="textPostalAddress" />
+
+        <EditText
+                android:id="@+id/etStudentPhoneHome"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:ems="10"
+                android:hint="Phone (Home)"
+                android:inputType="phone" />
+
+        <EditText
+                android:id="@+id/etStudentPhoneMobile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:ems="10"
+                android:hint="Phone (Mobile)"
+                android:inputType="phone" />
+
+        <EditText
+                android:id="@+id/etStudentMomName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:ems="10"
+                android:hint="Mother's Name"
+                android:inputType="textPersonName" />
+
+        <EditText
+                android:id="@+id/etStudentMomPhone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:ems="10"
+                android:hint="Mother's Phone"
+                android:inputType="phone" />
+
+        <EditText
+                android:id="@+id/etStudentDadName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:ems="10"
+                android:hint="Father's Name"
+                android:inputType="textPersonName" />
+
+        <EditText
+                android:id="@+id/etStudentDadPhone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:ems="10"
+                android:hint="Father's Phone"
+                android:inputType="phone" />
+
+        <Button
+                android:id="@+id/btnStudentInsert"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:text="Insert" />
+    </LinearLayout>
+
+    <LinearLayout
+            android:id="@+id/layGradeInput"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+        <Spinner
+                android:id="@+id/spnGradeStudent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:spinnerMode="dialog" />
+
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Quarter:" />
+
+        <RadioGroup
+                android:id="@+id/rgGradeQuarter"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:orientation="horizontal">
+
+            <RadioButton
+                    android:id="@+id/rbGradeQuarter1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="1st" />
+
+            <RadioButton
+                    android:id="@+id/rbGradeQuarter2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="2nd" />
+
+            <RadioButton
+                    android:id="@+id/rbGradeQuarter3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="3rd" />
+
+            <RadioButton
+                    android:id="@+id/rbGradeQuarter4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="4th" />
+        </RadioGroup>
+
+        <EditText
+                android:id="@+id/etGradeMaths"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:ems="10"
+                android:hint="Grade in Maths"
+                android:inputType="number" />
+
+        <EditText
+                android:id="@+id/etGradeEnglish"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:ems="10"
+                android:hint="Grade in English"
+                android:inputType="number" />
+
+        <EditText
+                android:id="@+id/etGradeCyber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:ems="10"
+                android:hint="Grade in Cyber"
+                android:inputType="number" />
+
+        <EditText
+                android:id="@+id/etGradeHistory"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:ems="10"
+                android:hint="Grade in History"
+                android:inputType="number" />
+
+        <Button
+                android:id="@+id/btnGradeInsert"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Insert" />
+    </LinearLayout>
+</LinearLayout>
