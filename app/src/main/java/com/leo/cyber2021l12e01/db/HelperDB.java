@@ -43,10 +43,8 @@ public class HelperDB extends SQLiteOpenHelper {
 				+ " (" + GradeEntry._ID + " INTEGER PRIMARY KEY,"
 				+ " " + GradeEntry.STUDENT_ID + " INTEGER,"
 				+ " " + GradeEntry.QUARTER + " INTEGER,"
-				+ " " + GradeEntry.GRADE_MATHS + " INTEGER,"
-				+ " " + GradeEntry.GRADE_ENGLISH + " INTEGER,"
-				+ " " + GradeEntry.GRADE_CYBER + " INTEGER,"
-				+ " " + GradeEntry.GRADE_HISTORY + " INTEGER"
+				+ " " + GradeEntry.SUBJECT + " INTEGER,"
+				+ " " + GradeEntry.VALUE + " INTEGER"
 				+ ")";
 		db.execSQL(sqlCreate);
 	}

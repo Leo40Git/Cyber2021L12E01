@@ -155,42 +155,21 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:text="4th" />
+
         </RadioGroup>
 
-        <EditText
-                android:id="@+id/etGradeMaths"
+        <Spinner
+                android:id="@+id/spnGradeSubject"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="4dp"
-                android:ems="10"
-                android:hint="Grade in Maths"
-                android:inputType="number" />
+                android:layout_height="wrap_content" />
 
         <EditText
-                android:id="@+id/etGradeEnglish"
+                android:id="@+id/etGradeValue"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="4dp"
                 android:ems="10"
-                android:hint="Grade in English"
-                android:inputType="number" />
-
-        <EditText
-                android:id="@+id/etGradeCyber"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="4dp"
-                android:ems="10"
-                android:hint="Grade in Cyber"
-                android:inputType="number" />
-
-        <EditText
-                android:id="@+id/etGradeHistory"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="4dp"
-                android:ems="10"
-                android:hint="Grade in History"
+                android:hint="Grade"
                 android:inputType="number" />
 
         <Button

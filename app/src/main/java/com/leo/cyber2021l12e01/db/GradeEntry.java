@@ -21,19 +21,11 @@ public class GradeEntry implements BaseColumns {
 	 */
 	public static final String QUARTER = "Quarter";
 	/**
-	 * The grade in Maths, INTEGER.
+	 * The subject this grade is in, INTEGER.
 	 */
-	public static final String GRADE_MATHS = "GradeMaths";
+	public static final String SUBJECT = "Subject";
 	/**
-	 * The grade in English, INTEGER.
+	 * The grade value, INTEGER.
 	 */
-	public static final String GRADE_ENGLISH = "GradeEnglish";
-	/**
-	 * The grade in Cyber, INTEGER.
-	 */
-	public static final String GRADE_CYBER = "GradeCyber";
-	/**
-	 * The grade in History, INTEGER.
-	 */
-	public static final String GRADE_HISTORY = "GradeHistory";
+	public static final String VALUE = "Value";
 }

@@ -22,6 +22,8 @@ import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.leo.androidutils.NameIDPair;
+import com.leo.androidutils.OptionalInt;
 import com.leo.cyber2021l12e01.db.GradeEntry;
 import com.leo.cyber2021l12e01.db.HelperDB;
 import com.leo.cyber2021l12e01.db.StudentEntry;
@@ -34,6 +36,8 @@ import java.util.ArrayList;
  * @author Leo40Git
  */
 public class InputActivity extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener {
+
+	public static final String[] SUBJECTS = { "Maths", "Cyber", "English", "History", "Literature" };
 
 	private Spinner spnTableSelect;
 	private ArrayAdapter<String> spnTableSelectAdp;
@@ -53,10 +57,9 @@ public class InputActivity extends AppCompatActivity implements View.OnClickList
 	private Spinner spnGradeStudent;
 	private ArrayAdapter<NameIDPair> spnGradeStudentAdp;
 	private RadioGroup rgGradeQuarter;
-	private EditText etGradeMaths;
-	private EditText etGradeEnglish;
-	private EditText etGradeCyber;
-	private EditText etGradeHistory;
+	private Spinner spnGradeSubject;
+	private ArrayAdapter<String> spnGradeSubjectAdp;
+	private EditText etGradeValue;
 	private Button btnGradeInsert;
 
 	private HelperDB hlp;
@@ -85,15 +88,16 @@ public class InputActivity extends AppCompatActivity implements View.OnClickList
 		layGradeInput = findViewById(R.id.layGradeInput);
 		spnGradeStudent = findViewById(R.id.spnGradeStudent);
 		rgGradeQuarter = findViewById(R.id.rgGradeQuarter);
-		etGradeMaths = findViewById(R.id.etGradeMaths);
-		etGradeEnglish = findViewById(R.id.etGradeEnglish);
-		etGradeCyber = findViewById(R.id.etGradeCyber);
-		etGradeHistory = findViewById(R.id.etGradeHistory);
+		etGradeValue = findViewById(R.id.etGradeValue);
+		spnGradeSubject = findViewById(R.id.spnGradeSubject);
 		btnGradeInsert = findViewById(R.id.btnGradeInsert);
 
 		spnTableSelect.setOnItemSelectedListener(this);
 		spnTableSelectAdp = new ArrayAdapter<>(this, R.layout.support_simple_spinner_dropdown_item, HelperDB.TABLE_NAMES);
 		spnTableSelect.setAdapter(spnTableSelectAdp);
+
+		spnGradeSubjectAdp = new ArrayAdapter<>(this, R.layout.support_simple_spinner_dropdown_item, SUBJECTS);
+		spnGradeSubject.setAdapter(spnGradeSubjectAdp);
 
 		btnStudentInsert.setOnClickListener(this);
 		btnGradeInsert.setOnClickListener(this);
@@ -236,41 +240,19 @@ public class InputActivity extends AppCompatActivity implements View.OnClickList
 				Toast.makeText(this, "Please select a quarter!", Toast.LENGTH_LONG).show();
 				return;
 			}
-			OptionalInt gradeMathsO = parseEditText(this, etGradeMaths);
-			if (!gradeMathsO.isPresent())
+			int subject = spnGradeSubject.getSelectedItemPosition();
+			OptionalInt valueO = parseEditText(this, etGradeValue);
+			if (!valueO.isPresent())
 				return;
-			int gradeMaths = gradeMathsO.getAsInt();
-			if (gradeMaths < 0 || gradeMaths > 100) {
-				Toast.makeText(this, etGradeMaths.getHint() + " must be between 0 and 100!", Toast.LENGTH_LONG).show();
-			}
-			OptionalInt gradeEnglishO = parseEditText(this, etGradeEnglish);
-			if (!gradeEnglishO.isPresent())
-				return;
-			int gradeEnglish = gradeEnglishO.getAsInt();
-			if (gradeEnglish < 0 || gradeEnglish > 100) {
-				Toast.makeText(this, etGradeEnglish.getHint() + " must be between 0 and 100!", Toast.LENGTH_LONG).show();
-			}
-			OptionalInt gradeCyberO = parseEditText(this, etGradeCyber);
-			if (!gradeCyberO.isPresent())
-				return;
-			int gradeCyber = gradeCyberO.getAsInt();
-			if (gradeCyber < 0 || gradeCyber > 100) {
-				Toast.makeText(this, etGradeCyber.getHint() + " must be between 0 and 100!", Toast.LENGTH_LONG).show();
-			}
-			OptionalInt gradeHistoryO = parseEditText(this, etGradeHistory);
-			if (!gradeHistoryO.isPresent())
-				return;
-			int gradeHistory = gradeHistoryO.getAsInt();
-			if (gradeHistory < 0 || gradeHistory > 100) {
-				Toast.makeText(this, etGradeHistory.getHint() + " must be between 0 and 100!", Toast.LENGTH_LONG).show();
+			int value = valueO.getAsInt();
+			if (value < 0 || value > 100) {
+				Toast.makeText(this, etGradeValue.getHint() + " must be between 0 and 100!", Toast.LENGTH_LONG).show();
 			}
 			ContentValues cv = new ContentValues();
 			cv.put(GradeEntry.STUDENT_ID, studentID);
 			cv.put(GradeEntry.QUARTER, quarter);
-			cv.put(GradeEntry.GRADE_MATHS, gradeMaths);
-			cv.put(GradeEntry.GRADE_ENGLISH, gradeEnglish);
-			cv.put(GradeEntry.GRADE_CYBER, gradeCyber);
-			cv.put(GradeEntry.GRADE_HISTORY, gradeHistory);
+			cv.put(GradeEntry.SUBJECT, subject);
+			cv.put(GradeEntry.VALUE, value);
 			db = hlp.getWritableDatabase();
 			db.insert(GradeEntry.TABLE_NAME, null, cv);
 			db.close();
@@ -368,7 +350,7 @@ public class InputActivity extends AppCompatActivity implements View.OnClickList
 			gi = new Intent(this, ViewActivity.class);
 			break;
 		case R.id.menuSortFilter:
-			// gi = new Intent(this, SortFilterActivity.class);
+			gi = new Intent(this, SortFilterActivity.class);
 			break;
 		case R.id.menuCredits:
 			gi = new Intent(this, CreditsActivity.class);

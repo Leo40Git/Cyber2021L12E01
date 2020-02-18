@@ -52,7 +52,7 @@ public class CreditsActivity extends AppCompatActivity {
 			gi = new Intent(this, ViewActivity.class);
 			break;
 		case R.id.menuSortFilter:
-			// gi = new Intent(this, SortFilterActivity.class);
+			gi = new Intent(this, SortFilterActivity.class);
 			break;
 		default:
 			break;

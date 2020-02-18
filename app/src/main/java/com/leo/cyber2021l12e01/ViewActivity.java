@@ -12,7 +12,6 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.text.Spanned;
 import android.util.SparseArray;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -23,6 +22,7 @@ import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.leo.androidutils.NameIDPair;
 import com.leo.cyber2021l12e01.db.GradeEntry;
 import com.leo.cyber2021l12e01.db.HelperDB;
 import com.leo.cyber2021l12e01.db.StudentEntry;
@@ -286,10 +286,8 @@ public class ViewActivity extends AppCompatActivity implements AdapterView.OnIte
 		crsr.moveToFirst();
 		final int studentID = crsr.getInt(crsr.getColumnIndex(GradeEntry.STUDENT_ID));
 		final int quarter = crsr.getInt(crsr.getColumnIndex(GradeEntry.QUARTER));
-		final int gradeMaths = crsr.getInt(crsr.getColumnIndex(GradeEntry.GRADE_MATHS));
-		final int gradeEnglish = crsr.getInt(crsr.getColumnIndex(GradeEntry.GRADE_ENGLISH));
-		final int gradeCyber = crsr.getInt(crsr.getColumnIndex(GradeEntry.GRADE_CYBER));
-		final int gradeHistory = crsr.getInt(crsr.getColumnIndex(GradeEntry.GRADE_HISTORY));
+		final int subject = crsr.getInt(crsr.getColumnIndex(GradeEntry.SUBJECT));
+		final int value = crsr.getInt(crsr.getColumnIndex(GradeEntry.VALUE));
 		crsr.close();
 		crsr = db.query(StudentEntry.TABLE_NAME, new String[] { StudentEntry.NAME }, StudentEntry._ID + "=?", new String[] { Integer.toString(studentID) }, null, null, null);
 		crsr.moveToFirst();
@@ -304,19 +302,12 @@ public class ViewActivity extends AppCompatActivity implements AdapterView.OnIte
 		String source = String.format(Locale.getDefault(),
 				"<b>Student:</b> %s<br>"
 				+ "<b>Quarter:</b> %s<br>"
-				+ "<b>Grades:</b><br>"
-				+ "<ul>"
-				+ "<li><b>Maths:</b> %d</li>"
-				+ "<li><b>English:</b> %d</li>"
-				+ "<li><b>Cyber:</b> %d</li>"
-				+ "<li><b>History:</b> %d</li>"
-				+ "</ul>",
+				+ "<b>Subject:</b> %s<br>"
+				+ "<b>Value:</b> %d",
 				TextUtilsCompat.htmlEncode(studentName),
 				ORDINAL_NUMBERS[quarter],
-				gradeMaths,
-				gradeEnglish,
-				gradeCyber,
-				gradeHistory
+				InputActivity.SUBJECTS[subject],
+				value
 		);
 
 		AlertDialog.Builder adb = new AlertDialog.Builder(this);
