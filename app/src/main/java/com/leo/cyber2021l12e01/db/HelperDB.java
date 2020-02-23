@@ -55,5 +55,6 @@ public class HelperDB extends SQLiteOpenHelper {
 		db.execSQL(sqlDelete);
 		sqlDelete = "DROP TABLE IF EXISTS " + GradeEntry.TABLE_NAME;
 		db.execSQL(sqlDelete);
+		onCreate(db);
 	}
 }
